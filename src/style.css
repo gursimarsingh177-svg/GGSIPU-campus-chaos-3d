@@ -1,0 +1,83 @@
+:root {
+  font-family: 'Segoe UI', Arial, sans-serif;
+  color: #eef4f7;
+  background: #101924;
+  font-synthesis: none;
+  text-rendering: optimizeLegibility;
+}
+
+* { box-sizing: border-box; }
+body { margin: 0; min-width: 320px; min-height: 100vh; overflow: hidden; }
+button { font: inherit; }
+#game, #ui { position: fixed; inset: 0; }
+#ui { pointer-events: none; }
+#game canvas { display: block; width: 100%; height: 100%; }
+
+.screen { position: absolute; inset: 0; pointer-events: none; }
+.menu-screen { display: grid; place-items: center; padding: 24px; background: radial-gradient(ellipse at 68% 50%, #18283a99, #0c131deF 72%); pointer-events: auto; overflow: auto; }
+.menu-card { width: min(1050px, 100%); display: grid; grid-template-columns: minmax(0, 1.05fr) minmax(300px, .95fr); border: 1px solid #ffffff1a; border-radius: 25px; background: #111b27eF; box-shadow: 0 30px 100px #0008; overflow: hidden; }
+.menu-copy { padding: clamp(24px, 5vw, 56px); }
+.eyebrow { color: #91d6c6; letter-spacing: .16em; font-size: .73rem; font-weight: 700; text-transform: uppercase; }
+h1, h2, h3 { font-family: 'Segoe UI', Arial, sans-serif; }
+.menu-copy h1 { margin: 12px 0; font-size: clamp(2.5rem, 6vw, 5rem); line-height: .96; letter-spacing: -.06em; }
+.menu-copy h1 span { color: #91d6c6; }
+.lead { color: #a9bac8; line-height: 1.65; max-width: 44ch; }
+.campus-note { padding: 12px 14px; margin-top: 20px; border-left: 3px solid #e8ba6e; background: #e8ba6e12; color: #d3c7ac; font-size: .83rem; line-height: 1.5; }
+.mode-panel { padding: 28px; background: #172331; display: flex; flex-direction: column; justify-content: center; gap: 10px; }
+.mode-panel h2 { margin: 0 0 8px; }
+.mode-button, .primary-button, .small-button { color: #eef4f7; border: 1px solid #ffffff1c; border-radius: 12px; background: #ffffff08; cursor: pointer; transition: .18s ease; }
+.mode-button { text-align: left; padding: 13px 15px; }
+.mode-button strong { display: block; font-size: .95rem; }
+.mode-button small { color: #9cabb8; display: block; margin-top: 4px; }
+.mode-button:hover, .small-button:hover { border-color: #91d6c6; background: #91d6c618; transform: translateY(-1px); }
+.mode-button:disabled { opacity: .46; cursor: not-allowed; }
+.primary-button { background: #91d6c6; border-color: #91d6c6; color: #10211f; font-weight: 700; padding: 12px 17px; }
+.primary-button:hover { background: #b0eedf; }
+.small-button { padding: 8px 11px; }
+
+.hud { padding: 18px; display: flex; justify-content: space-between; align-items: flex-start; gap: 12px; pointer-events: none; }
+.hud-group { display: flex; gap: 8px; align-items: flex-start; pointer-events: auto; }
+.hud-card { background: #111b27d9; border: 1px solid #ffffff18; border-radius: 14px; padding: 11px 14px; box-shadow: 0 8px 28px #0003; backdrop-filter: blur(10px); }
+.hud-label { font-size: .67rem; text-transform: uppercase; letter-spacing: .12em; color: #95a7b5; }
+.hud-value { font-weight: 700; margin-top: 3px; }
+.hud-actions { display: flex; flex-wrap: wrap; gap: 6px; justify-content: flex-end; }
+.hud-actions button { pointer-events: auto; }
+.mission-card { position: absolute; left: 18px; bottom: 20px; max-width: min(360px, calc(100vw - 36px)); }
+.vehicle-status { position: absolute; left: 50%; bottom: 20px; transform: translateX(-50%); white-space: nowrap; font-size: .78rem; pointer-events: auto; }
+.campus-info-panel { position: absolute; top: 150px; right: 18px; width: min(330px, calc(100vw - 36px)); pointer-events: auto; line-height: 1.45; }
+.campus-info-panel p { margin: 8px 0 0; color: #c6d1d8; font-size: .79rem; }
+.campus-info-panel .campus-disclaimer { color: #e0c58f; }
+.campus-info-close { float: right; margin: -4px -6px 8px 8px; }
+.hud-actions button[aria-pressed="false"] { opacity: .68; border-style: dashed; }
+.controls-hint { position: absolute; right: 18px; bottom: 20px; max-width: 270px; color: #c6d1d8; font-size: .78rem; line-height: 1.6; text-align: right; text-shadow: 0 2px 6px #000; }
+.minimap { width: 170px; height: 130px; display: block; border-radius: 9px; margin-top: 7px; background: #263638; }
+.map-legend { display: flex; flex-wrap: wrap; gap: 4px 9px; margin-top: 6px; color: #d3dedf; font-size: .61rem; }
+.toast { position: absolute; top: 84px; left: 50%; transform: translate(-50%, -10px); opacity: 0; transition: .22s ease; background: #101924ed; border: 1px solid #91d6c677; border-radius: 999px; padding: 10px 17px; font-size: .86rem; }
+.toast.visible { transform: translate(-50%, 0); opacity: 1; }
+.pause-screen { display: grid; place-items: center; pointer-events: auto; background: #0c131dbb; backdrop-filter: blur(6px); }
+.pause-card { background: #111b27; border: 1px solid #ffffff1e; padding: 28px; border-radius: 20px; text-align: center; min-width: min(360px, calc(100vw - 36px)); }
+.pause-card p { color: #9cabb8; }
+.settings-row { display: flex; justify-content: space-between; align-items: center; padding: 8px 0; color: #c4d0d8; }
+input[type=range] { accent-color: #91d6c6; }
+.touch-controls { position: absolute; inset: auto 16px 95px; display: none; justify-content: space-between; pointer-events: none; }
+.touch-controls button { width: 56px; height: 56px; border-radius: 50%; background: #101924a8; border: 1px solid #fff4; color: white; pointer-events: auto; }
+.mode-tag { color: #91d6c6; font-weight: 700; }
+.hud[hidden], [hidden] { display: none !important; }
+
+@media (max-width: 760px) {
+  .menu-card { grid-template-columns: 1fr; }
+  .menu-copy { padding: 28px; }
+  .mode-panel { padding: 22px; }
+  .hud { display: block; padding: 10px; }
+  .hud-group:first-child { max-width: calc(100vw - 20px); }
+  .hud-group:nth-child(2) { position: absolute; top: 104px; right: 10px; display: flex; flex-direction: column; align-items: flex-end; }
+  .hud-card { max-width: 100%; }
+  .hud-card { padding: 9px 10px; }
+  .hud-actions { display: flex; flex-direction: row; flex-wrap: wrap; max-width: 170px; }
+  .hud-actions .small-button { font-size: .69rem; padding: 6px 7px; }
+  .minimap { width: 125px; height: 100px; }
+  .campus-info-panel { top: 210px; right: 10px; }
+  .controls-hint { display: none; }
+  .touch-controls { display: flex; left: 16px; right: auto; width: 190px; }
+  .vehicle-status { bottom: 160px; max-width: calc(100vw - 24px); white-space: normal; text-align: center; }
+}
